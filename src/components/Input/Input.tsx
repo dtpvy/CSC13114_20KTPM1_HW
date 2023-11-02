@@ -1,6 +1,6 @@
-import { ChangeEvent, HTMLInputTypeAttribute } from "react";
-import styles from "./styles.module.css";
-import classNames from "classnames";
+import { ChangeEvent, HTMLInputTypeAttribute } from 'react';
+import styles from './styles.module.css';
+import classNames from 'classnames';
 
 type Props = {
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
@@ -11,12 +11,7 @@ type Props = {
 };
 
 const Input = ({ className, ...props }: Props) => {
-  return (
-    <input
-      className={classNames(styles["custom-input"], className)}
-      {...props}
-    />
-  );
+  return <input className={classNames(styles['custom-input'], className)} {...props} />;
 };
 
 export default Input;

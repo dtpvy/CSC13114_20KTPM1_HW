@@ -1,15 +1,15 @@
-import { Login } from "@/pages/Login";
-import { Register } from "@/pages/Register";
+import { Login } from '@/pages/Login';
+import { Register } from '@/pages/Register';
 
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter } from 'react-router-dom';
 
 export const router = createBrowserRouter([
   {
-    path: "/login",
+    path: '/login',
     element: <Login />,
   },
   {
-    path: "/register",
+    path: '/register',
     element: <Register />,
   },
 ]);
