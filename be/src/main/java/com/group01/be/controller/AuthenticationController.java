@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.group01.be.dto.JwtAuthenticationReponse;
+import com.group01.be.dto.SignInRequest;
 import com.group01.be.dto.SignUpRequest;
 import com.group01.be.entities.User;
 import com.group01.be.services.AuthenticationService;
@@ -21,5 +23,10 @@ public class AuthenticationController {
     @PostMapping("/signup")
     public ResponseEntity<User> signup(@RequestBody SignUpRequest signUpRequest) {
         return ResponseEntity.ok(authenticationService.signup(signUpRequest));
+    }
+
+    @PostMapping("/signin")
+    public ResponseEntity<JwtAuthenticationReponse> signin(@RequestBody SignInRequest signInRequest) {
+        return ResponseEntity.ok(authenticationService.signin(signInRequest));
     }
 }

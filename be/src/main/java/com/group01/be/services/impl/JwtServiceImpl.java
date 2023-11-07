@@ -2,6 +2,7 @@ package com.group01.be.services.impl;
 
 import java.security.Key;
 import java.util.Date;
+import java.util.Map;
 import java.util.function.Function;
 
 import org.springframework.security.core.userdetails.UserDetails;
@@ -21,6 +22,14 @@ public class JwtServiceImpl implements JwtService {
         return Jwts.builder().setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24))
+                .signWith(getSigninKey(), SignatureAlgorithm.HS256)
+                .compact();
+    }
+
+    public String generateRefreshToken(Map<String, Object> extraClaims, UserDetails userDetails) {
+        return Jwts.builder().setClaims(extraClaims).setSubject(userDetails.getUsername())
+                .setIssuedAt(new Date(System.currentTimeMillis()))
+                .setExpiration(new Date(System.currentTimeMillis() + 604800000))
                 .signWith(getSigninKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
