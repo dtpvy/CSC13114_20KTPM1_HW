@@ -8,6 +8,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.group01.be.dto.JwtAuthenticationReponse;
+import com.group01.be.dto.RefreshTokenRequest;
 import com.group01.be.dto.SignInRequest;
 import com.group01.be.dto.SignUpRequest;
 import com.group01.be.entities.Role;
@@ -56,5 +57,23 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         jwtAuthenticationReponse.setRefreshToken(refreshToken);
 
         return jwtAuthenticationReponse;
+    }
+
+    public JwtAuthenticationReponse refreshToken(RefreshTokenRequest refreshTokenRequest) {
+        String userEmail = jwtService.extractUserName(refreshTokenRequest.getToken());
+        User user = userRepo.findByEmail(userEmail).orElseThrow();
+
+        if (jwtService.isTokenValid(refreshTokenRequest.getToken(), user)) {
+            var jwt = jwtService.generateToken(user);
+
+            JwtAuthenticationReponse jwtAuthenticationReponse = new JwtAuthenticationReponse();
+
+            jwtAuthenticationReponse.setToken(jwt);
+            jwtAuthenticationReponse.setRefreshToken(refreshTokenRequest.getToken());
+
+            return jwtAuthenticationReponse;
+        }
+
+        return null;
     }
 }
