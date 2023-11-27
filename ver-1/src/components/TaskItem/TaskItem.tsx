@@ -4,9 +4,10 @@ import { Task } from "../../App";
 type Props = {
   task: Task;
   onChange: (task: Task) => void;
+  onDelete: () => void;
 };
 
-const TaskItem = ({ task, onChange }: Props) => {
+const TaskItem = ({ task, onChange, onDelete }: Props) => {
   const [title, setTitle] = useState(task.title);
   const [isEdit, setIsEdit] = useState(false);
 
@@ -22,6 +23,10 @@ const TaskItem = ({ task, onChange }: Props) => {
   const handleChange = () => {
     setIsEdit(false);
     onChange({ ...task, title });
+  };
+
+  const handleDelete = () => {
+    onDelete();
   };
 
   return (
@@ -51,6 +56,7 @@ const TaskItem = ({ task, onChange }: Props) => {
           <button onClick={handleChange}>update</button>
         </>
       )}
+      <button onClick={handleDelete}>delete</button>
     </div>
   );
 };

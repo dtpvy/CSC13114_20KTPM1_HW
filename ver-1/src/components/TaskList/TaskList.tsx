@@ -20,10 +20,15 @@ const TaskList = ({ tasks, onChange }: Props) => {
     }
   }, [search, tasks]);
 
-  const handleUpdate = (task: Task, index: number) => {
-    const _task = [...tasks];
-    _task[index] = task;
-    onChange(_task);
+  const handleUpdate = (task: Task) => {
+    const index = tasks.findIndex((_task) => _task.id === task.id);
+    const newData = [...tasks];
+    newData[index] = task;
+    onChange(newData);
+  };
+
+  const handleDelete = (task: Task) => {
+    onChange(tasks.filter((_task) => _task.id === task.id));
   };
 
   return (
@@ -33,7 +38,8 @@ const TaskList = ({ tasks, onChange }: Props) => {
         <TaskItem
           key={index}
           task={task}
-          onChange={(task) => handleUpdate(task, index)}
+          onDelete={() => handleDelete(task)}
+          onChange={(task) => handleUpdate(task)}
         />
       ))}
     </div>

@@ -7,6 +7,7 @@ import "./App.css";
 export type Task = {
   title: string;
   status: "todo" | "done";
+  id: number;
 };
 
 function App() {
@@ -28,7 +29,11 @@ function App() {
   }, []);
 
   const handleAdd = (title: string) => {
-    const newTasks: Task[] = [...tasks, { title, status: "todo" }];
+    const maxId = tasks.reduce((maxId, task) => Math.max(maxId, task.id), 0);
+    const newTasks: Task[] = [
+      ...tasks,
+      { title, status: "todo", id: maxId + 1 },
+    ];
     setTasks(newTasks);
     setData(newTasks);
   };
