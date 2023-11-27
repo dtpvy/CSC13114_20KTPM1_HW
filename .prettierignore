@@ -1,6 +1,0 @@
-node_modules
-build
-dist
-.next
-storybook-static
-packages/scripts/dist/index.js
