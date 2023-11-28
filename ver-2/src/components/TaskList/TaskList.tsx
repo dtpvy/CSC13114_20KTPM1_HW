@@ -12,7 +12,7 @@ const TaskList = () => {
 
   useEffect(() => {
     if (search) {
-      setData((prev) => prev.filter((task) => task.title.includes(search)));
+      setData(tasks.filter((task) => task.title.includes(search)));
     } else {
       setData([...tasks]);
     }
