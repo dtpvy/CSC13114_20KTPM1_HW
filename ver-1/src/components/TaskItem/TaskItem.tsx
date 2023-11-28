@@ -52,7 +52,7 @@ const TaskItem = ({ task, onChange, onDelete }: Props) => {
         </>
       ) : (
         <>
-          <input onChange={(e) => setTitle(e.target.value)} />
+          <input value={title} onChange={(e) => setTitle(e.target.value)} />
           <button onClick={handleChange}>update</button>
         </>
       )}

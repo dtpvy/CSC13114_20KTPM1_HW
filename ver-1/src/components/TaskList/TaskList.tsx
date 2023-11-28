@@ -28,7 +28,7 @@ const TaskList = ({ tasks, onChange }: Props) => {
   };
 
   const handleDelete = (task: Task) => {
-    onChange(tasks.filter((_task) => _task.id === task.id));
+    onChange(tasks.filter((_task) => _task.id !== task.id));
   };
 
   return (
