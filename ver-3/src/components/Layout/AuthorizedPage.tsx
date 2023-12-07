@@ -18,8 +18,6 @@ const AuthorizedPage = ({ children }: Props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  console.log({ status, location });
-
   if (status === "unauthorized") {
     if (location.pathname !== "/login") return <Navigate to="/login" />;
     return <div>{children}</div>;
