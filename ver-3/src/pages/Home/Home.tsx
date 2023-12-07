@@ -4,7 +4,7 @@ import { TaskList } from "@/components/TaskList";
 import { AppDispatch } from "@/store";
 
 import { useDispatch } from "react-redux";
-import { fetchData } from "@/store/todo/todosSlice";
+import { fetchData } from "@/store/todo/todoSlice";
 import { logout } from "@/store/userSlice";
 
 function Home() {
